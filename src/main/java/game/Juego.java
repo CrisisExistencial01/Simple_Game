@@ -8,7 +8,6 @@ public class Juego {
 
     }
     public void turnoDeAtaque(Personaje atacante, Personaje defensor){
-
         atacante.atacar(defensor);
         declararGanador(atacante, defensor);
     }
