@@ -15,8 +15,9 @@ public class Mago extends Personaje {
 
     public void atacar(Personaje enemigo){
         int daño = this.calcularDaño() - enemigo.defensa;
+
         if (this.mana >= 10){
-            enemigo.hp -= daño;
+            enemigo.recibirDaño(daño);
             this.mana -= 10;
         }
     }

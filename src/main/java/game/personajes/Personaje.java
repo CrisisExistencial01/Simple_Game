@@ -2,6 +2,9 @@ package game.personajes;
 import java.util.Random;
 import game.accesorios.Pocion;
 import game.accesorios.Arma;
+import game.estetica.Color;
+import static game.estetica.prettier.prettier;
+
 public class Personaje {
     protected String nombre;
     protected int hp;
@@ -11,12 +14,17 @@ public class Personaje {
     protected Arma arma;
 
     public Personaje(String nombre, int hp, int ataque, int defensa, Pocion pocion, Arma arma){
+        visitarSantuario();
         this.nombre = nombre;
         this.hp = hp;
         this.ataque = ataque;
         this.defensa = defensa;
         this.pocion = pocion;
         this.arma = arma;
+    }
+    public void mostrarEstado(){
+        System.out.println("Nombre: " + nombre + prettier("\nvida: ", Color.GREEN)+ hp + prettier("\t\tAtaque: ", Color.CYAN) + ataque + prettier("\t\tDefensa: ", Color.YELLOW) + defensa);
+
     }
     public boolean calcularVidaParaPocion(){
         boolean estado = false;
@@ -26,6 +34,7 @@ public class Personaje {
         return estado;
     }
     public void recibirDaño(int daño){
+        System.out.printf("HP: ", hp);
         this.hp -= daño;
     }
     public boolean estaVivo(){
@@ -43,7 +52,7 @@ public class Personaje {
 
             int daño = this.calcularDaño() - enemigo.defensa;
 
-        enemigo.hp -= daño;
+        enemigo.recibirDaño(daño);
         }
     }
     public void usarPocion(){
@@ -52,19 +61,20 @@ public class Personaje {
     public int calcularDaño(){
         return this.ataque + this.arma.getPoderDeAtaque();
     }
-    public boolean probabilidadSantuario(){
 
+    public boolean probabilidadSantuario(){
         boolean santuario = new Random().nextBoolean();
-        System.out.println("Santuario: " + santuario);
         return santuario;
     }
     public void visitarSantuario(){
         if (probabilidadSantuario()){
-            this.defensa += 10;
+            this.defensa += 2;
         }
     }
     public String getNombre(){
         return this.nombre;
     }
-
+    public int getHp(){
+        return this.hp;
+    }
 }
