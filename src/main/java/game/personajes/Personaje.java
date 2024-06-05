@@ -77,4 +77,7 @@ public class Personaje {
     public int getHp(){
         return this.hp;
     }
+    public void setArma(Arma arma){
+        this.arma = arma;
+    }
 }
