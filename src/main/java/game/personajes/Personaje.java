@@ -13,8 +13,9 @@ public class Personaje {
     protected Pocion pocion;
     protected Arma arma;
     public Personaje(String nombre, int hp, int ataque, int defensa, Pocion pocion, Arma arma){
-        visitarSantuario();
+
         this.nombre = nombre;
+        visitarSantuario();
         this.hp = hp;
         this.ataque = ataque;
         this.defensa = defensa;
@@ -64,6 +65,9 @@ public class Personaje {
 
     public boolean probabilidadSantuario(){
         boolean santuario = new Random().nextBoolean();
+        if(santuario){
+            System.out.println(this.nombre + " ha encontrado un santuario!");
+        }
         return santuario;
     }
     public void visitarSantuario(){
