@@ -1,8 +1,10 @@
 package game.personajes;
 
+import game.estetica.Color;
 import game.personajes.Personaje;
 import game.accesorios.Pocion;
 import game.accesorios.Arma;
+import static game.estetica.prettier.prettier;
 public class Mago extends Personaje {
     private int mana;
     private int poderMagico;
@@ -21,13 +23,19 @@ public class Mago extends Personaje {
             this.mana -= 10;
         }
     }
+    public void mostrarEstado(){
+        super.mostrarEstado();
+        System.out.println(prettier("Daño magico: ", Color.PURPLE) + this.getDañoDeClase() + "\n");
+    }
 
     public void usarPocion(){
         this.hp += this.pocion.getCuracion();
         this.mana += 10;
     }
-
     public int calcularDaño(){
-        return this.ataque + this.arma.getPoderDeAtaque() + this.poderMagico;
+        return this.ataque + getDañoDeClase();
+    }
+    public int getDañoDeClase(){
+        return (int) (this.arma.getPoderDeAtaque() * 0.3 * this.poderMagico);
     }
 }
