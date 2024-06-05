@@ -15,7 +15,7 @@ public class Juego {
 
     public void iniciarCombate(){
         jugador1 = new Guerrero("Guerrero", 100, 9, 5, new Pocion("Pocion de vida", 20), null, 15);
-        jugador2 = new Mago("Mago", 100, 8, 4, new Pocion("Pocion de vida", 20), null, 120, 12);
+        jugador2 = new Mago("Mago", 100, 8, 4, new Pocion("Pocion de vida", 20), null, 100, 14);
 
         asignarArma(jugador1);
         asignarArma(jugador2);

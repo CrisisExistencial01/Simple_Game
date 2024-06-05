@@ -25,7 +25,7 @@ public class Mago extends Personaje {
     }
     public void mostrarEstado(){
         super.mostrarEstado();
-        System.out.println(prettier("Daño magico: ", Color.PURPLE) + this.getDañoDeClase() + "\n");
+        System.out.println(prettier("Daño magico: ", Color.PURPLE) + this.getDañoDeClase() + prettier("\t\tMana: ", Color.PURPLE) + this.mana);
     }
 
     public void usarPocion(){
