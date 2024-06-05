@@ -4,6 +4,8 @@ import game.personajes.*;
 
 import java.util.Random;
 
+import static game.estetica.prettier.prettier;
+import game.estetica.Color;
 public class Juego {
     private Personaje jugador1;
     private Personaje jugador2;
@@ -12,8 +14,8 @@ public class Juego {
 
 
     public void iniciarCombate(){
-        jugador1 = new Guerrero("Guerrero", 100, 9, 5, new Pocion("Pocion de vida", 10), null, 15);
-        jugador2 = new Mago("Mago", 100, 8, 4, new Pocion("Pocion de vida", 10), null, 120, 12);
+        jugador1 = new Guerrero("Guerrero", 100, 9, 5, new Pocion("Pocion de vida", 20), null, 15);
+        jugador2 = new Mago("Mago", 100, 8, 4, new Pocion("Pocion de vida", 20), null, 120, 12);
 
         asignarArma(jugador1);
         asignarArma(jugador2);
@@ -39,7 +41,13 @@ public class Juego {
     }
 
     public void turnoDeAtaque(Personaje atacante, Personaje defensor){
-        atacante.atacar(defensor);
+
+        if (atacante.calcularVidaParaPocion() && atacante.tienePocion()){
+            atacante.usarPocion();
+        }else{
+            atacante.atacar(defensor);
+            System.out.println(atacante.getNombre()+ prettier(" ha usado una pocion!", Color.RED));
+        }
         atacante.mostrarEstado();
         defensor.mostrarEstado();
         declararGanador(atacante, defensor);

@@ -12,7 +12,6 @@ public class Personaje {
     protected int defensa;
     protected Pocion pocion;
     protected Arma arma;
-
     public Personaje(String nombre, int hp, int ataque, int defensa, Pocion pocion, Arma arma){
         visitarSantuario();
         this.nombre = nombre;
@@ -57,6 +56,7 @@ public class Personaje {
     }
     public void usarPocion(){
         this.hp += this.pocion.getCuracion();
+        this.pocion = null;
     }
     public int calcularDaño(){
         return this.ataque + this.arma.getPoderDeAtaque();
@@ -79,5 +79,8 @@ public class Personaje {
     }
     public void setArma(Arma arma){
         this.arma = arma;
+    }
+    public boolean tienePocion(){
+        return this.pocion != null ? true : false;
     }
 }
